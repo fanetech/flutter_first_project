@@ -1,3 +1,6 @@
+import 'package:first_app/pages/home/widgets/category.dart';
+import 'package:first_app/pages/home/widgets/header.dart';
+import 'package:first_app/pages/home/widgets/search.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,7 +30,9 @@ class HomePage extends StatelessWidget {
                     'assets/images/bg_liquid.png',
                     width: 200,
                   ))),
-          Container()
+          const Column(
+            children: [HeaderSection(), SearchSession(), CategorySection()],
+          )
         ],
       )),
       bottomNavigationBar: NavigationBar(),

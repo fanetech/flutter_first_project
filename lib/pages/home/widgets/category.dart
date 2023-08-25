@@ -1,3 +1,5 @@
+import 'package:first_app/pages/home/widgets/newest.dart';
+import 'package:first_app/pages/home/widgets/popular.dart';
 import 'package:flutter/material.dart';
 
 class CategorySection extends StatelessWidget {
@@ -34,20 +36,65 @@ class CategorySection extends StatelessWidget {
         ),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 140,
-            color: Colors.green,
             child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Column(
-                      children: [Icon(categories[index]['icon'] as IconData)],
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              color: categories[index]['color'] as Color,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Icon(
+                            categories[index]['icon'] as IconData,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                        ),
+                        Text(
+                          categories[index]['title'] as String,
+                          style: TextStyle(
+                              color: Colors.black.withOpacity(0.7),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )
+                      ],
                     ),
                 separatorBuilder: (context, index) => const SizedBox(
                       width: 33,
                     ),
                 itemCount: categories.length),
-          )
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Text(
+              'Poplar game',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          PopularGame(),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Text(
+              'Newest game',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          NewestGame()
         ],
       ),
     );
